@@ -3,8 +3,7 @@ import seaborn as sns
 import numpy as np
 import pandas as pd
 
-# ========================================
-# ========================================
+
 sns.set_style("whitegrid")
 plt.rcParams['font.size'] = 12
 plt.rcParams['axes.labelsize'] = 14
@@ -14,8 +13,6 @@ plt.rcParams['ytick.labelsize'] = 12
 plt.rcParams['legend.fontsize'] = 12
 plt.rcParams['figure.dpi'] = 100
 
-# ========================================
-# ========================================
 labels = ['0%', '20%', '40%', '60%']
 x_pos = np.arange(len(labels))
 
@@ -28,16 +25,14 @@ tbcp_std  = [16.41, 16.51, 16.31, 16.99]
 leach_mean = [78.40, 78.47, 78.29, 78.12]
 leach_std  = [14.31, 14.34, 14.34, 14.36]
 
-# ========================================
-# ========================================
+
 n_runs = 30
 data_dict = {}
 for i, (m, s) in enumerate(zip(our_mean, our_std)):
     simulated = np.random.normal(m, s, n_runs)
     data_dict[labels[i]] = simulated
 
-# ========================================
-# ========================================
+
 plt.figure(figsize=(8, 5))
 plt.errorbar(labels, our_mean, yerr=our_std, fmt='o-',
              color='#D62728', ecolor='#2C3E50',
@@ -56,8 +51,7 @@ plt.savefig("accuracy_lineplot.png", dpi=300, bbox_inches='tight')
 plt.close()
 print("✅ 1. accuracy_lineplot.png")
 
-# ========================================
-# ========================================
+
 plt.figure(figsize=(10, 6))
 width = 0.25
 bars1 = plt.bar(x_pos - width, our_mean, width, label='Our Protocol',
@@ -79,8 +73,7 @@ plt.savefig("comparison_barplot.png", dpi=300, bbox_inches='tight')
 plt.close()
 print("✅ 2. comparison_barplot.png")
 
-# ========================================
-# ========================================
+
 plt.figure(figsize=(10, 6))
 box = plt.boxplot([data_dict[l] for l in labels], labels=labels, patch_artist=True,
                   boxprops=dict(facecolor='lightblue', color='black', linewidth=1.5),
@@ -98,8 +91,7 @@ plt.savefig("accuracy_boxplot.png", dpi=300, bbox_inches='tight')
 plt.close()
 print("✅ 3. accuracy_boxplot.png")
 
-# ========================================
-# ========================================
+
 plt.figure(figsize=(10, 6))
 data_list = [data_dict[l] for l in labels]
 sns.stripplot(data=data_list, palette="Dark2",
