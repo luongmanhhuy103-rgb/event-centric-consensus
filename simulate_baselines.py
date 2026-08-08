@@ -4,7 +4,7 @@ import math
 import time
 import sys
 
-# Constants
+
 WINDOW_SIZE = 10
 BASELINE = 50
 NUM_NODES = 10
