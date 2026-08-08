@@ -1,8 +1,3 @@
-/* ============================================================
- * Event-Centric Adaptive Consensus - Full Firmware
- * Cho Cooja/Contiki-NG trên Z1 mote (MSP430)
- * ============================================================ */
-
 #include "contiki.h"
 #include "net/ipv6/simple-udp.h"
 #include "dev/serial-line.h"
@@ -10,8 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* ============================================================
- * ============================================================ */
 #define WINDOW_SIZE         10
 #define BASELINE            50.0f
 #define THRESHOLD_ANOMALY   0.40f
@@ -19,15 +12,13 @@
 #define NOISE_ESTIMATION_STEPS  20
 #define PI_LOCAL            0.6f
 
-/* ============================================================
- * ============================================================ */
+
 float sigmoid_approx(float x) {
     float ax = x < 0 ? -x : x;
     return 0.5f + 0.5f * (x / (1.0f + ax));
 }
 
-/* ============================================================
- * ============================================================ */
+
 static float sensor_buffer[WINDOW_SIZE];
 static uint8_t buffer_index = 0;
 static float noise_baseline = 1.0f;
@@ -35,8 +26,7 @@ static float weight = 0.5f;
 static float anomaly = 0.0f;
 static uint8_t dead = 0;
 
-/* ============================================================
- * ============================================================ */
+
 
 float compute_context_shift(float *buffer, uint8_t len, float baseline) {
     float sum = 0.0f;
@@ -65,7 +55,7 @@ float compute_noise_variance(float *buffer, uint8_t len) {
 }
 
 float compute_weight(float context, float noise) {
-    float ratio = context / 0.001f; /* NO NOISE: bỏ qua noise */
+    float ratio = context / 0.001f; 
     return sigmoid_approx(ratio);
 }
 
@@ -83,9 +73,7 @@ void update_buffer(float value) {
     buffer_index = (buffer_index + 1) % WINDOW_SIZE;
 }
 
-/* ============================================================
- * PROCESS CHÍNH
- * ============================================================ */
+
 PROCESS(consensus_process, "Event-Centric Consensus");
 AUTOSTART_PROCESSES(&consensus_process);
 
