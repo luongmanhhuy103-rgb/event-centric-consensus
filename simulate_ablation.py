@@ -3,7 +3,7 @@ import random
 import math
 import sys
 
-# Constants
+
 WINDOW_SIZE = 10
 BASELINE = 50
 THRESHOLD_ANOMALY = 0.40
