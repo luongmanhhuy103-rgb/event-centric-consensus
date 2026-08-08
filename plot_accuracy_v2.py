@@ -4,7 +4,6 @@ import pandas as pd
 import numpy as np
 import re
 
-# "viridis", "plasma", "Set2", "Dark2", "tab10"
 
 def extract_accuracy_from_log(filename):
     with open(filename, 'r') as f:
