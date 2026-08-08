@@ -1,0 +1,31 @@
+#include "contiki.h"
+#include "net/ipv6/simple-udp.h"
+#include "dev/serial-line.h"
+#include <stdio.h>
+#include <string.h>
+
+PROCESS(consensus_process, "Event-Centric Consensus Process");
+AUTOSTART_PROCESSES(&consensus_process);
+
+PROCESS_THREAD(consensus_process, ev, data)
+{
+  static struct etimer timer;
+
+  PROCESS_BEGIN();
+
+  printf("=== Event-Centric Consensus Node started ===\n");
+  printf("Hello world! This is a test.\n");
+
+  etimer_set(&timer, CLOCK_SECOND);
+
+  while(1) {
+    PROCESS_WAIT_EVENT();
+
+    if(etimer_expired(&timer)) {
+      printf("Tick: Node is alive.\n");
+      etimer_reset(&timer);
+    }
+  }
+
+  PROCESS_END();
+}
