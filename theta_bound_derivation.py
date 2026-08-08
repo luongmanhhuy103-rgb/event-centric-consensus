@@ -1,6 +1,5 @@
 import numpy as np
 
-# ==========================================================================
 
 def theta_min_required(f_net, k_nominal, f, epsilon):
     v_local = k_nominal * (1 - f_net)
